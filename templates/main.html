@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block body %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Change font color to red
+        document.querySelector('#red').onclick = function() {
+            document.querySelector('#hello').style.color = 'red';
+        };
+
+        // Change font color to blue
+        document.querySelector('#blue').onclick = function() {
+            document.querySelector('#hello').style.color = 'blue';
+        };
+
+        // Change font color to green
+        document.querySelector('#green').onclick = function() {
+            document.querySelector('#hello').style.color = 'green';
+        };
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+
+    // By default, submit button is disabled
+    document.querySelector('#submit').disabled = true;
+
+    // Enable button only if there is text in the input field
+    document.querySelector('#task').onkeyup = () => {
+        document.querySelector('#submit').disabled = false;
+    };
+
+    document.querySelector('#new-task').onsubmit = () => {
+
+        // Create new item for list
+        const li = document.createElement('li');
+        li.innerHTML = document.querySelector('#task').value;
+
+        // Add new item to task list
+        document.querySelector('#tasks').append(li);
+
+        // Clear input field and disable button again
+        document.querySelector('#task').value = '';
+        document.querySelector('#submit').disabled = true;
+
+        // Stop form from submitting
+        return false;
+    };
+
+});
+</script>
+
+<div class="header">
+
+<h1 id="hello" style="color:red;font-style: italic;">Demian</h1>
+<h2>by Hermann Hesse<h2>
+</div>
+<h2><img src="static/Demian.jpg" alt="demian" width=auto height=auto></h2>
+<div class='text-center m-0'>
+  <button id="red" class="btn btn-danger">Red</button>
+  <button id="blue" class="btn btn-primary">Blue</button>
+  <button id="green" class="btn btn-success">Green</button>
+</div>
+<div class="container">
+
+<h4>Demian es una novela que relata en primera persona el paso de la niñez a la madurez del personaje Emil Sinclair, del escritor alemán Hermann Hesse. La obra fue publicada por primera vez en 1919, en los tiempos que siguieron a la Gran Guerra. </h4>
+<h4>En esta página encontraras un resumen de la novela de forma sencilla, los personajes y también la ideología que tiene este libro, Hermann Hesse aplica en su libro muchas bases del psicoanálisis de Carl Gustav Jung.</h4>
+<h4>Todo comienza cuando Emil Sinclair sigue siendo todavía un niño, descubre un mundo ajeno y oscuro al que nunca estuvo expuesto en su entorno familiar. El mundo de lo que no es socialmente aceptado y lleno de cosas de las cuales sus padres no estarían orgullosos, de las que uno se siente avergonzado y trata de ocultar.</h4>
+<h4>La historia parte de la exploración de este mundo oscuro hasta que llega Demian, un joven un poco mayor que termina desempeñando la función de un guía, que poco a poco le dará las claves para alcanzar su realización personal.</h4>
+<h4>Gracias a sus andanzas con Demian, Emil conoce la idea de Abraxas, que es un dios que abarca todo lo bueno y todo lo malo, a diferencia del dios de los católicos que representa todo lo bueno y Lucifer que representa todo lo malo, esta dualidad realmente no importa dentro de Abraxas.</h4>
+<h4>En resumen, es el viaje interno de Emil tratando de aceptar todas las partes de sí mismo, incluyendo las más oscuras.</h4>
+<h1>Recomendaciones</h1>
+<ul id="tasks">
+</ul>
+<form id="new-task">
+    <input id="task" class="form-control" autocomplete="off" autofocus placeholder="New Task" type="text">
+    <input id="submit" type="submit">
+</form>
+</div>
+
+
+
+{% endblock %}
